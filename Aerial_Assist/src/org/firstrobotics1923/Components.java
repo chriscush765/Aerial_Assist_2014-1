@@ -3,20 +3,13 @@ package org.firstrobotics1923;
 import edu.wpi.first.wpilibj.Accelerometer;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.CounterBase;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import org.firstrobotics1923.system.DriveSystem;
 import org.firstrobotics1923.system.DriveTrain;
-import org.firstrobotics1923.system.Indexer;
-import org.firstrobotics1923.system.IntakeSystem;
-import org.firstrobotics1923.system.ShooterAngleSystem;
-import org.firstrobotics1923.system.ShooterSystem;
 import org.firstrobotics1923.util.MotorGroup;
 import org.firstrobotics1923.util.SmartDashboardInterface;
 import org.firstrobotics1923.util.StickShift;
@@ -40,13 +33,7 @@ public class Components {
    
     // SmartDashboard Interface
     public static SmartDashboardInterface sfxDashboard = new SmartDashboardInterface(table,true);
-     
-    /* Relays (Spikes)*/
-    public static final Relay compressorSpike = new Relay(5);
-    public static final Victor intakeVictor = new Victor(10); 
-    
-    /* Sensors (eg Encoders)*/
-    public static final DigitalInput compressorSafety = new DigitalInput(7);
+
     
     /* Speed controllers */
     public static final Victor frontLeftDrive = new Victor(9);  
@@ -79,11 +66,7 @@ public class Components {
     public static final MotorGroup shooterLeftWheels = new MotorGroup(shooterBackLeft, shooterFrontLeft);
     
     /* System Init */
-    public static final IntakeSystem intakeSystem = new IntakeSystem(intakeAngleControllerOne,intakeAngleControllerTwo, intakeVictor); 
     public static final DriveSystem robotDrive = new DriveSystem(driveLeftSide, driveRightSide);
-    public static final ShooterAngleSystem shooterAngleSystem = new ShooterAngleSystem(shooterAngleControllerOne, shooterAngleControllerTwo);
-    public static final ShooterSystem shooterSystem = new ShooterSystem(shooterLeftWheels, shooterRightWheels);
-    public static final Indexer indexer = new Indexer(indexerOne, indexerTwo);
     
     /* Sensors */
     public static Encoder DriveEncoderLeft = new Encoder(1,2, false, CounterBase.EncodingType.k4X);
@@ -95,30 +78,7 @@ public class Components {
     public static DriveTrain driveTrain = new DriveTrain();
     
     public static void init(){
-        // Update LiveWindow - This is for Test mode only !!!!!!!!
-        DriveGyro.reset();
-        LiveWindow.addSensor("Compressor", "compressorSafety", compressorSafety);
-        LiveWindow.addActuator("Compressor", "compressorSpike", compressorSpike);
-        LiveWindow.addActuator("Intakesystem", "intakeVictor", (Victor) intakeVictor);
-        LiveWindow.addActuator("Intakesystem", "intakeAngleControllerOne", intakeAngleControllerOne);
-        LiveWindow.addActuator("Intakesystem", "intakeAngleControllerTwo", intakeAngleControllerTwo);
-        LiveWindow.addActuator("ShooterSystem", "shooterFrontRight", (Victor) shooterFrontRight);
-        LiveWindow.addActuator("ShooterSystem", "shooterBackRight", (Victor) shooterBackRight);
-        LiveWindow.addActuator("ShooterSystem", "shooterFrontLeft", (Victor) shooterFrontLeft);
-        LiveWindow.addActuator("ShooterSystem", "shooterBackLeft", (Victor) shooterBackLeft);
-        
-        LiveWindow.addActuator("ShooterAngleSystem", "shooterAngleControllerOne", shooterAngleControllerOne);
-        LiveWindow.addActuator("ShooterAngleSystem", "shooterAngleControllerTwo", shooterAngleControllerTwo);
-        LiveWindow.addActuator("DriveSystem", "frontLeftDrive", (Victor) frontLeftDrive);
-        LiveWindow.addActuator("DriveSystem", "rearLeftDrive", (Victor) rearLeftDrive);
-        LiveWindow.addActuator("DriveSystem", "frontRightDrive", (Victor) frontRightDrive);
-        LiveWindow.addActuator("DriveSystem", "rearRightDrive", (Victor) rearRightDrive);
-        // Sensors
-        LiveWindow.addSensor("DriveSystem", "DriveEncoderLeft", DriveEncoderLeft);
-        LiveWindow.addSensor("DriveSystem", "DriveEncoderRight", DriveEncoderRight);
-        LiveWindow.addSensor("DriveSystem", "DriveGyro", DriveGyro);
-        LiveWindow.addSensor("DriveSystem", "DriveAccelerometer", DriveAccelerometer);
-        
-        
+        // Update LiveWindow - This is for Test mode only !!!!!!!
+   
     }
 }
